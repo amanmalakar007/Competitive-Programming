@@ -1,3 +1,5 @@
+package BuddyStrings859;
+
 import java.util.HashSet;
 
 public class BuddyStrings859 {

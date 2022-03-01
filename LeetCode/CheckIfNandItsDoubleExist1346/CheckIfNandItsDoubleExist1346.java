@@ -1,3 +1,5 @@
+package CheckIfNandItsDoubleExist1346;
+
 public class CheckIfNandItsDoubleExist1346 {
 	public boolean checkIfExist(int[] arr) {
 		for (int i = 0; i < arr.length - 1; i++) {

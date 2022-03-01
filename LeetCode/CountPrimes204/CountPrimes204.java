@@ -1,3 +1,5 @@
+package CountPrimes204;
+
 import java.util.*;
 public class CountPrimes204 {
     static int limit;

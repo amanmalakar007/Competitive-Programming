@@ -1,3 +1,5 @@
+package LongestCommonPrefix14;
+
 import java.util.*;
 
 public class LongestCommonPrefix14 {

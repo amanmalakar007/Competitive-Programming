@@ -1,3 +1,5 @@
+//link: https://codeforces.com/contest/289/problem/A
+
 package PoloThePenguinAndSegments;
 
 import java.util.*;
