@@ -2,8 +2,6 @@ https://leetcode.com/problems/count-primes/
 
 Given an integer n, return the number of prime numbers that are strictly less than n.
 
- 
-
 Example 1:
 
 Input: n = 10
