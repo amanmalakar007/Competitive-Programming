@@ -1,23 +1,22 @@
 import java.io.*;
 
-public class Solution
+public class Main
 {
 	public static void main(String[] args) throws IOException
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String colors = br.readLine();
-		boolean val = solver(colors);
-		if (colors.length() > 2 && val)
+		if (colors.length() > 2)
 		{
-			System.out.println("Wendy");
+			System.out.println(solver(colors));
 		}
-		else if (colors.length() > 2 && !val)
+		else
 		{
-			System.out.println("Bob");
+			System.out.println("No Winner");
 		}
 	}
 
-	public static boolean solver(String colors)
+	public static String solver(String colors)
 	{
 		StringBuilder str = new StringBuilder(colors);
 		boolean lastTurn = false; // true = wendy, false = bob
@@ -29,7 +28,7 @@ public class Solution
 				i = str.indexOf("www", i);
 				if (i == -1 || i >= str.length() - 2)
 				{
-					return lastTurn;
+					break;
 				}
 				else if (i != -1)
 				{
@@ -43,7 +42,7 @@ public class Solution
 				i = str.indexOf("bbb", i);
 				if (i == -1 || i >= str.length() - 2)
 				{
-					return lastTurn;
+					break;
 				}
 				else if (i != -1)
 				{
@@ -53,6 +52,6 @@ public class Solution
 				}
 			}
 		}
-		return lastTurn;
+		return lastTurn ? "wendy" : "bob";
 	}
 }
