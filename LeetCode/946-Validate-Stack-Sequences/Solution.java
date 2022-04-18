@@ -1,6 +1,6 @@
 class Solution {
-    public boolean validateStackSequences(int[] pushed, int[] popped) {
-        int pos = 0;
+	public boolean validateStackSequences(int[] pushed, int[] popped) {
+		int pos = 0;
 		int key = popped[0];
 		int length = pushed.length;
 		for (int i = 0; i < length; i++) {
@@ -21,5 +21,5 @@ class Solution {
 			}
 		}
 		return stack.isEmpty();
-    }
+	}
 }

@@ -1,6 +1,6 @@
 class Solution {
-    public List<Integer> partitionLabels(String s) {
-        int curr_max = 0, old_max = -1;
+	public List<Integer> partitionLabels(String s) {
+		int curr_max = 0, old_max = -1;
 		s = s + " ";
 		ArrayList<Integer> myList = new ArrayList<Integer>();
 		for (int i = 0; i < s.length(); i++) {
@@ -14,5 +14,5 @@ class Solution {
 				curr_max = pos;
 		}
 		return myList;
-    }
+	}
 }
