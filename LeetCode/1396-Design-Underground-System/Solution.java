@@ -1,74 +1,75 @@
 class UndergroundSystem {
-    HashMap<Integer,Details> map1;
-    HashMap<String,Double[]> map2;
-    public UndergroundSystem() {
-        map1 = new HashMap<Integer,Details>();
-        map2 = new HashMap<String,Double[]>();
-    }
-    
-    public void checkIn(int id, String stationName, int t) {
-        Details obj = new Details();
-        obj.setSS(stationName);
-        obj.setST(t);
-        map1.put(id,obj);
-    }
-    
-    public void checkOut(int id, String stationName, int t) {
-        Details obj = map1.get(id);
-        obj.setES(stationName);
-        obj.setET(t);
-        int tDiff = obj.getET() - obj.getST();
-        String stationPair = (obj.getSS()).concat(obj.getES());
-        if(map2.get(stationPair) == null) {
-            Double[] temp = {0.0,0.0};
-            map2.put(stationPair,temp);
-        }
-        Double[] temp = map2.get(stationPair);
-        temp[0] += tDiff;
-        temp[1] += 1;
-        map2.put(stationPair,temp);
-    }
-    
-    public double getAverageTime(String startStation, String endStation) {
-        String stationPair = startStation.concat(endStation);
-        Double[] arr = map2.get(stationPair);
-        return (arr[0]/arr[1]);
-    }
+	HashMap<Integer, RouteDetails> RouteDetailsMap;
+	HashMap<String, Integer[]> timeTakenMap;
+
+	public UndergroundSystem() {
+		RouteDetailsMap = new HashMap<Integer, RouteDetails>();
+		timeTakenMap = new HashMap<String, Integer[]>();
+	}
+
+	public void checkIn(int id, String stationName, int t) {
+		RouteDetails obj = new RouteDetails();
+		obj.setStartStation(stationName);
+		obj.setStartTime(t);
+		RouteDetailsMap.put(id, obj);
+	}
+
+	public void checkOut(int id, String stationName, int t) {
+		RouteDetails obj = RouteDetailsMap.get(id);
+		obj.setEndStation(stationName);
+		obj.setEndTime(t);
+		int travelTime = obj.getEndTime() - obj.getStartTime();
+		String stationPair = obj.getStartStation() + "->" + obj.getEndStation();
+		if (timeTakenMap.get(stationPair) == null) {
+			Integer[] temp = { 0, 0 };
+			timeTakenMap.put(stationPair, temp);
+		}
+		Integer[] temp = timeTakenMap.get(stationPair);
+		temp[0] += travelTime; // store the total travel-time for each station pair
+		temp[1] += 1; // store the total number of passengers for that pair
+		timeTakenMap.put(stationPair, temp);
+	}
+
+	public double getAverageTime(String startStation, String endStation) {
+		String stationPair = startStation + "->" + endStation;
+		Integer[] arr = timeTakenMap.get(stationPair);
+		return ((double) arr[0] / arr[1]);
+	}
 }
 
-class Details {
-    String SS, ES;
-    int ST, ET;
-    
-    public void setSS(String SS) {
-        this.SS = SS;
-    }
-    
-    public String getSS() {
-        return SS;
-    }
-    
-    public void setES(String ES) {
-        this.ES = ES;
-    }
-    
-    public String getES() {
-        return ES;
-    }
-    
-    public void setST(int ST) {
-        this.ST = ST;
-    }
-    
-    public int getST() {
-        return ST;
-    }
-    
-    public void setET(int ET) {
-        this.ET = ET;
-    }
-    
-    public int getET() {
-        return ET;
-    }
+class RouteDetails {
+	String startStation, endStation;
+	int startTime, endTime;
+
+	public void setStartStation(String startStation) {
+		this.startStation = startStation;
+	}
+
+	public String getStartStation() {
+		return startStation;
+	}
+
+	public void setEndStation(String endStation) {
+		this.endStation = endStation;
+	}
+
+	public String getEndStation() {
+		return endStation;
+	}
+
+	public void setStartTime(int startTime) {
+		this.startTime = startTime;
+	}
+
+	public int getStartTime() {
+		return startTime;
+	}
+
+	public void setEndTime(int endTime) {
+		this.endTime = endTime;
+	}
+
+	public int getEndTime() {
+		return endTime;
+	}
 }
