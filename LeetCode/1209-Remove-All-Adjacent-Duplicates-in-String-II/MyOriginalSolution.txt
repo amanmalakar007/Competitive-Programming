@@ -1,0 +1,33 @@
+//Two test-cases not passed, TLE. Else all runs fine :'(
+
+class Solution {
+	public String removeDuplicates(String s, int k) {
+		String[] targets = generateTargets(k);
+		while (true) {
+            int flag = 0;
+			for (String str : targets) {
+				if (s.contains(str)) {
+					s = s.replace(str, "");
+                    flag = 1;
+				}
+			}
+            if (flag == 0)
+                break;
+		}
+		return s;
+	}
+
+	private String[] generateTargets(int k) {
+		int copy = k;
+		String[] targets = new String[26];
+		for (int i = 97, j = 0; i <= 122; i++, j++) {
+			String s = "";
+			while (copy-- > 0) {
+				s = s.concat(Character.toString((char) i));
+			}
+			targets[j] = s;
+			copy = k;
+		}
+		return targets;
+	}
+}
